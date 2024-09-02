@@ -1,0 +1,145 @@
+
+/*-------------------------------------------
+	Secondary
+-------------------------------------------*/
+
+
+#secondary {}
+
+	/* Twitter Feed */
+
+	#twitter {
+
+		margin: 30px 0 25px 0;
+		border: 2px solid $gray;
+
+		@media screen and (min-width: 700px) {
+
+			margin: 0 0 30px 0;
+
+		}
+
+		.container {
+
+			height: 337px;
+
+		}
+
+			.header {}
+
+				.title {
+
+					@include hide-text;
+
+					a {
+
+						display: block;
+						height: 40px;
+						background: $gray url(/a/img/tweets.svg) center center no-repeat;
+
+						&:hover {}
+
+					}
+
+				}
+
+			.tweets {
+
+				height: 297px;
+				padding: 0 5px;
+
+			}
+
+	}
+
+	/* Links */
+
+	.links {
+
+		margin: 0 0 35px 0;
+
+		.title {
+
+			margin-bottom: (20/24) + em;
+			@include font-size(24);
+			line-height: (30/24) + em;
+			font-family: Georgia, "Times New Roman", Times, serif;
+			font-weight: normal;
+
+		}
+
+		ul {
+
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+		}
+
+			li {
+
+				@include trade-gothic-roman;
+				text-transform: uppercase;
+
+			}
+
+				a {
+
+					color: $gray;
+
+					&:hover {}
+
+				}
+
+	}
+
+	/* Testimonial */
+
+	.testimonial {
+
+		margin: 0 0 35px 0;
+		padding: 15px;
+		border: 2px solid $gray;
+
+		.title {
+
+			display: none;
+			margin-bottom: (20/24) + em;
+			@include font-size(24);
+			line-height: (30/24) + em;
+			font-family: Georgia, "Times New Roman", Times, serif;
+			font-weight: normal;
+
+		}
+
+		blockquote {}
+
+			div {}
+
+				p {
+
+					&:first-of-type {
+
+						&:before {
+
+							content: "\201C";
+
+						}
+
+					}
+
+					&:last-of-type {
+
+						&:after {
+
+							content: "\201D";
+
+						}
+
+					}
+
+				}
+
+				cite {}
+
+	}

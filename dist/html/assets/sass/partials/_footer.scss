@@ -1,0 +1,235 @@
+
+/*-------------------------------------------
+	Footer
+-------------------------------------------*/
+
+
+#footer {
+
+	padding: 20px 0;
+	color: $white;
+	background: $gray;
+
+	.wrap {
+
+		@media screen and (min-width: 540px) {
+
+			position: relative;
+
+		}
+
+		@media screen and (min-width: 800px) {
+
+			padding-left: 170px;
+
+		}
+
+	}
+
+}
+
+	/* Secondary Navigation */
+
+	.secondary-nav {
+
+		margin: 0 0 16px 0;
+
+		@media screen and (min-width: 540px) {
+
+			display: table;
+
+		}
+
+		@media screen and (min-width: 800px) {
+
+			margin: 0;
+
+		}
+
+		> div {
+
+			padding: 16px 0;
+			border-bottom: 1px solid $white;
+
+			@media screen and (min-width: 540px) {
+
+				display: table-cell;
+				padding: 0 20px;
+				vertical-align: top;
+				border: none;
+				border-left: 1px solid $white;
+
+			}
+
+			&:first-of-type {
+
+				padding-top: 0;
+
+				@media screen and (min-width: 540px) {
+
+					padding-left: 0;
+					border: none;
+
+				}
+
+			}
+
+			&:last-of-type {
+
+				border-bottom: none;
+
+			}
+
+		}
+
+			ul {
+
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+			}
+
+				li {
+
+					line-height: (20/12) + em;
+					@include trade-gothic-roman;
+					text-transform: uppercase;
+
+				}
+
+					a {
+
+						color: $white;
+
+						&:hover {}
+
+					}
+
+	}
+
+	/* vCard */
+
+	.vcard {
+
+		margin: 16px 0 0 0;
+		line-height: (20/12) + em;
+		@include trade-gothic-roman;
+
+		@media screen and (min-width: 540px) {
+
+			// position: absolute;
+			// right: 20px;
+			// top: 0;
+			// z-index: 5;
+
+		}
+
+	}
+
+		.fn {
+
+			text-transform: uppercase;
+
+			@media screen and (min-width: 540px) {
+
+				display: block;
+
+			}
+
+		}
+
+		.org {
+
+			display: none;
+
+		}
+
+		.email {
+
+			text-transform: none;
+
+			a {
+
+				color: $white;
+
+				&:hover {}
+
+			}
+
+		}
+
+		.tel {
+
+			@media screen and (min-width: 540px) {
+
+				display: block;
+
+			}
+
+		}
+
+	/* Member */
+
+	.member {
+
+		margin: 0 0 32px 0;
+
+		@media screen and (min-width: 540px) {
+
+			position: absolute;
+			right: 20px;
+			top: 0;
+			margin: 0;
+			z-index: 5;
+
+		}
+
+		a {
+
+			&:hover {}
+
+		}
+
+			img {
+
+				width: 80px;
+
+			}
+
+		span {
+
+			display: inline-block;
+			margin: 0 0 0 10px;
+
+			@media screen and (min-width: 800px) {
+
+				margin: 0 0 0 5px;
+
+			}
+
+		}
+
+	}
+
+	/* Copyright */
+
+	#copyright {
+
+		width: 120px;
+		height: 44px;
+		margin: 0;
+		background: url(/a/img/logo-footer.svg);
+		@include hide-text;
+
+		@media screen and (min-width: 800px) {
+
+			position: absolute;
+			left: 20px;
+			top: 50%;
+			margin-top: -22px;
+			z-index: 5;
+
+		}
+
+	}

@@ -1,0 +1,497 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+
+<!doctype html>
+
+<!--[if lt IE 7]>
+
+	<html lang="en-US" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7">
+
+<![endif]-->
+
+<!--[if IE 7]>
+
+	<html lang="en-US" class="no-js ie7 lt-ie10 lt-ie9 lt-ie8">
+
+<![endif]-->
+
+<!--[if IE 8]>
+
+	<html lang="en-US" class="no-js ie8 lt-ie10 lt-ie9">
+
+<![endif]-->
+
+<!--[if IE 9]>
+
+	<html lang="en-US" class="no-js ie9 lt-ie10">
+
+<![endif]-->
+
+<!--[if gt IE 9]><!-->
+
+	<html lang="en-US" class="no-js">
+
+<!--<![endif]-->
+
+<head>
+
+	<meta charset="utf-8" />
+
+	<!--[if IE]>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+	<![endif]-->
+
+	<title>{% if entry.title is defined %}{{ entry.title }} | {% endif %}{{ siteName }}</title>
+
+	<meta name="description" content="" />
+
+	<meta name="author" content="{{ siteName }}" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	{% if googleTools.google_site_verification %}
+
+	<meta name="google-site-verification" content="{{ googleTools.google_site_verification }}" />
+
+	{% endif %}
+
+	<link rel="shortcut icon" href="/a/img/favicon.png" />
+
+	<link rel="apple-touch-icon" href="/a/img/touch-icon.png" />
+
+	<link type="text/css" href="/a/css/screen.css" rel="stylesheet" media="screen, projection" />
+
+	<link type="text/css" href="http://fast.fonts.net/cssapi/1d45cf9e-02cb-4631-b523-dc263714cdcb.css" rel="stylesheet" />
+
+	<link type="text/css" href="/a/css/print.css" rel="stylesheet" media="print" />
+
+	<script src="/a/js/modernizr.js"></script>
+
+	<meta name="twitter:card" content="" />
+	<meta name="twitter:site" content="" />
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:description" content="" />
+	<meta name="twitter:url" content="" />
+
+	<meta property="og:title" content="" />
+	<meta property="og:description" content="" />
+	<meta property="og:url" content="" />
+	<meta property="og:image" content="" />
+
+</head>
+
+<body id="{{ craft.request.getSegment(1) ?: 'home' }}"{% if craft.request.firstSegment == '' %} class="loading"{% endif %}>
+
+	<div id="header" role="banner">
+
+		<div class="wrap">
+
+			<div id="logo">
+
+				<a href="{{ siteUrl }}">{{ siteName }}</a>
+
+			</div>
+
+			<div id="nav" role="navigation">
+
+				<div class="toggle">
+
+					<span>Menu</span>
+
+				</div>
+
+				<ul>
+
+					<li class="about{%if craft.request.firstSegment == '' %} active{% endif %}">
+
+						<a href="/">About</a>
+
+					</li>
+
+					<li class="properties{%if craft.request.firstSegment == 'properties' %} active{% endif %}">
+
+						<a href="/properties/">Properties</a>
+
+					</li>
+
+					<li class="tenants{%if craft.request.firstSegment == 'tenants' %} active{% endif %}">
+
+						<a href="/tenants/">Tenants</a>
+
+					</li>
+
+					<li class="owners{%if craft.request.firstSegment == 'owners' %} active{% endif %}">
+
+						<a href="/owners/">Owners</a>
+
+					</li>
+
+					<li class="staff{%if craft.request.firstSegment == 'staff' %} active{% endif %}">
+
+						<a href="/staff/">Staff</a>
+
+					</li>
+
+					<li class="contact">
+
+						<a href="mailto:{{ contactInformation.contactEmail }}">Contact</a>
+
+					</li>
+
+					<li class="rental-application">
+
+						<a href="https://adobeformscentral.com/?f=l8NqCaEDW3z7W7PtVHpPOw" rel="external">Rental Application</a>
+
+					</li>
+
+				</ul>
+
+			</div>
+
+			<div class="connect">
+
+				<ul>
+
+					<li class="youtube">
+
+						<a href="{{ socialMedia.socialYoutube }}" rel="external">YouTube</a>
+
+					</li>
+
+					<li class="twitter">
+
+						<a href="{{ socialMedia.socialTwitter }}" rel="external">Twitter</a>
+
+					</li>
+
+					<li class="linkedin">
+
+						<a href="{{ socialMedia.socialLinkedin }}" rel="external">LinkedIn</a>
+
+					</li>
+
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	{% if entry.hero | length %}
+
+	<div id="hero">
+
+		<div class="wrap">
+
+			{% for image in entry.hero %}
+
+			<img src="{{ image.getURL() }}" alt="" />
+
+			{% endfor %}
+
+		</div>
+
+	</div>
+
+	{% endif %}
+
+	<div id="content">
+
+		<div class="wrap">
+
+			<div id="main" role="main">
+
+				{% block content %}
+
+					<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+
+					<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+
+				{% endblock %}
+
+				{% if entry.displayStatement %}
+
+				<div class="eoe">
+
+					{{ eoe.eoeStatement }}
+
+				</div>
+
+				{% endif %}
+
+			</div>
+
+			<div id="secondary" role="complementary">
+
+				{% if craft.request.firstSegment == '' %}
+
+				<div id="twitter">
+
+					<div class="container">
+
+						<div class="header">
+
+							<h3 class="title">
+
+								<a href="https://twitter.com/TheAnaGroup" rel="external">Tweets</a>
+
+							</h3>
+
+						</div>
+
+						<div class="tweets">
+
+							<a class="twitter-timeline" href="https://twitter.com/TheAnaGroup" data-widget-id="420345690431041536" height="299" data-border-color="#58595b" data-chrome="noheader nofooter transparent">Tweets by @TheAnaGroup</a>
+
+							<script>
+
+								!function(d,s,id){
+
+									var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+
+									if(!d.getElementById(id)){
+
+										js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);
+
+									}
+
+								}(document,"script","twitter-wjs");
+
+							</script>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				{% endif %}
+
+				{% if entry.externalLinks | length %}
+
+				<div class="links">
+
+					<h3 class="title">Links</h3>
+
+					<ul>
+
+						{% for block in entry.externalLinks %}
+
+						<li>
+
+							<a href="{{ block.linkUrl }}" rel="external">{{ block.linkTitle }}</a>
+
+						</li>
+
+						{% endfor %}
+
+					</ul>
+
+				</div>
+
+				{% endif %}
+
+				{% if entry.testimonialQuote | length %}
+
+				<div class="testimonial">
+
+					<h3 class="title">Testimonial</h3>
+
+					<blockquote>
+
+						<div>
+
+							{{ entry.testimonialQuote }}
+
+						</div>
+
+						<cite>{{ entry.testimonialSource }}</cite>
+
+					</blockquote>
+
+				</div>
+
+				{% endif %}
+
+				{% if craft.request.firstSegment == 'tenants' %}
+
+				<div class="cp-calc-widget" data-calcid="1467" data-anchor="16"></div>
+
+				<a href="http://www.calculatorpro.com/calculator/how-much-rent-can-i-afford-calculator/" rel="external">Online Calculator</a>
+
+				<script src="http://www.calculatorpro.com/wp-content/plugins/calcs/js/widgetV6.min.js"></script>
+
+				{% endif %}
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<footer id="footer" role="conteninfo">
+
+		<div class="wrap">
+
+			<div class="secondary-nav">
+
+				<div>
+
+					<ul>
+
+						<li>
+
+							<a href="/about/">About</a>
+
+						</li>
+
+						<li>
+
+							<a href="/properties/">Properties</a>
+
+						</li>
+
+						<li>
+
+							<a href="/tenants/">Tenants</a>
+
+						</li>
+
+						<li>
+
+							<a href="/owners/">Owners</a>
+
+						</li>
+
+						<li>
+
+							<a href="/staff/">Staff</a>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+				<div>
+
+					<ul>
+
+						<li>
+
+							<a href="mailto:{{ contactInformation.contactEmail }}">Contact</a>
+
+						</li>
+
+						<li>
+
+							<a href="https://adobeformscentral.com/?f=l8NqCaEDW3z7W7PtVHpPOw" rel="external">Rental Application</a>
+
+						</li>
+
+						<li>
+
+							<div id="hcard-Anna-Webb" class="vcard">
+
+								<div class="fn">{{ contactInformation.contactName }}</div>
+
+								<div class="org">{{ siteName }}</div>
+
+								<div class="email">
+
+									<a href="mailto:{{ contactInformation.contactEmail }}">{{ contactInformation.contactEmail }}</a>
+
+								</div>
+
+								<div class="tel">{{ contactInformation.contactPhone }}</div>
+
+							</div>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="member">
+
+				<a href="{{ member.memberUrl }}" rel="external" title="{{ member.memberTitle }}">
+
+					{% for image in member.memberImage %}
+
+					<img src="{{ image.getURL() }}" alt="{{ member.memberTitle }}" />
+
+					{% endfor %}
+
+				</a>
+
+				<span>
+
+					<img src="/a/img/eoe.png" alt="Equal Housing Opportunity" />
+
+				</span>
+
+			</div>
+
+			<p id="copyright">Copyright {{ now.year }} {{ siteName }}. All rights reserved.</p>
+
+		</div>
+
+	</footer>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+	<script>
+
+		window.jQuery || document.write("<script src='/a/js/jquery.js'>\x3C/script>")
+
+	</script>
+
+	<!--[if lt IE 9]>
+
+		<script src="/a/js/selectivizr.js"></script>
+
+	<![endif]-->
+
+	<script src="/a/js/matchmedia.js"></script>
+
+	<script src="/a/js/picturefill.js"></script>
+
+	<script src="/a/js/functions.js"></script>
+
+	{% if googleTools.google_analytics %}
+
+	<script>
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', '{{ googleTools.google_analytics }}', 'url-to-your-site.com');
+
+		ga('send', 'pageview');
+
+	</script>
+
+	{% endif %}
+
+</body>
+
+</html>
